@@ -3,6 +3,7 @@ import axios from 'axios';
 
 
 const  PersonList = ()=>  {
+
    const [list, setList] = useState({
         persons: []
     })

@@ -1,36 +1,34 @@
-import React from 'react';
+import React,{useState} from 'react';
 import axios from 'axios';
 
-export default class PersonList extends React.Component {
-    state = {
-        id: '',
+const DeleteList = () => {
+    const [state, setState] = useState({id: ''})
+
+    const handleChange = event => {
+        setState({id: event.target.value});
     }
 
-    handleChange = event => {
-        this.setState({ id: event.target.value });
-    }
-
-    handleSubmit = event => {
+    const handleSubmit = event => {
         event.preventDefault();
 
-        axios.delete(`https://jsonplaceholder.typicode.com/users/${this.state.id}`)
+        axios.delete(`https://jsonplaceholder.typicode.com/users/${state.id}`)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
             })
     }
 
-    render() {
+
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <label>
                         Person ID:
-                        <input type="text" name="id" onChange={this.handleChange} />
+                        <input type="text" name="id" onChange={handleChange} />
                     </label>
                     <button type="submit">Delete</button>
                 </form>
             </div>
         )
-    }
 }
+export default DeleteList ;

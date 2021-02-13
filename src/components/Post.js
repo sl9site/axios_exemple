@@ -9,23 +9,22 @@ const PostPersonList =()=> {
    })
 
     const handleChange = event => {
-        setInpValue( event.target.value);
-        setPersonList({...personList, name: inpValue});
-
+        setInpValue(event.target.value);
+        setPersonList({...personList, name: event.target.value});
+        console.log(inpValue, personList)
     }
 
     const handleSubmit = event => {
         event.preventDefault();
-
         const user = {
             name: personList.name
         };
 
         axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
             .then(res => {
-                console.log(res);
-                console.log(res.data);
+                console.log(res.data, personList);
             })
+
     }
 
 
